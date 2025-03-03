@@ -26,8 +26,6 @@ namespace ticketiApi.Models
         [Required]
         public bool SoldOut {get; set; } = false;
         [Required]
-        public int TicketsAvailable {get; set; }
-        [Required]
         public int MaxTicketsPerUser { get; set; }
     }
 }
