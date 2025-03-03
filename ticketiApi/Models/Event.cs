@@ -28,6 +28,6 @@ namespace ticketiApi.Models
         [Required]
         public int TicketsAvailable {get; set; }
         [Required]
-        public int MaxTickets { get; set; }
+        public int MaxTicketsPerUser { get; set; }
     }
 }
