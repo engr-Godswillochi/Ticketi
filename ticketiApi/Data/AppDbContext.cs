@@ -14,8 +14,8 @@ namespace ticketiApi.Data
 
         }
         
-        public DbSet<Event> events;
-        public DbSet<Ticket> tickets;
+        public DbSet<Event> events {get; set;}
+        public DbSet<Ticket> tickets {get; set;}
         
 
     }
