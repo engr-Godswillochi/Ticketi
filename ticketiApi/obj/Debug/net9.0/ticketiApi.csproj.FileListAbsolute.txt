@@ -164,3 +164,6 @@ C:\Users\HP\Documents\devs\Ticketi\ticketiApi\obj\Debug\net9.0\refint\ticketiApi
 C:\Users\HP\Documents\devs\Ticketi\ticketiApi\obj\Debug\net9.0\ticketiApi.pdb
 C:\Users\HP\Documents\devs\Ticketi\ticketiApi\obj\Debug\net9.0\ticketiApi.genruntimeconfig.cache
 C:\Users\HP\Documents\devs\Ticketi\ticketiApi\obj\Debug\net9.0\ref\ticketiApi.dll
+C:\Users\HP\Documents\devs\Ticketi\ticketiApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HP\Documents\devs\Ticketi\ticketiApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HP\Documents\devs\Ticketi\ticketiApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
