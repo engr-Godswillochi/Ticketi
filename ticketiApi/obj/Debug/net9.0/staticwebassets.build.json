@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "TaMBcq2Y8cKho+6Z8ezZ0TI5LfN8NYvvQEGHu1yQmKs=",
+  "Source": "ticketiApi",
+  "BasePath": "_content/ticketiApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

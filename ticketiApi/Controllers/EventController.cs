@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ticketiApi.Controllers
 {
+    [Route("api/event")]
+    [ApiController]
     public class EventController : ControllerBase
     {
         
