@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ticketiApi.Data;
 using ticketiApi.Interface;
+using ticketiApi.Models;
 
 namespace ticketiApi.Controllers
 {
@@ -12,19 +15,21 @@ namespace ticketiApi.Controllers
     public class EventController : ControllerBase
     {
         private readonly IEventRepository _eventrepo;
-        public EventController(IEventRepository eventRepo)
+        private readonly AppDbContext _context;
+        public EventController(IEventRepository eventRepo, AppDbContext context)
         {
             _eventrepo = eventRepo;
+            _context = context;
         }
         [HttpGet]
-        public async Task<IActionResult> GetEvents()
+        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
         {
-            var events = await _eventrepo.GetAllEventsAsync();
-            if (events == null)
-            {
-                return BadRequest("No events recorded");
-            }
-            return Ok(events);
+            return await _context.events.ToListAsync();
+            // if (events == null)
+            // {
+            //     return Ok("No events recorded");
+            // }
+            // return Ok(events);
         }
         
     }
