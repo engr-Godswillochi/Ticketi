@@ -31,6 +31,11 @@ namespace ticketiApi.Controllers
             // }
             // return Ok(events);
         }
-        
+        [HttpPost]
+        public async Task<IActionResult> create(CreateEventDto createEvent)
+        {
+            _context.events.add(createEvent);
+            await _context.SaveChangesAsync();
+        }
     }
 }
