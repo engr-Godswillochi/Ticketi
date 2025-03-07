@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ticketiApi.Data;
+using ticketiApi.Dto.EventDto;
 using ticketiApi.Interface;
+using ticketiApi.Mappers;
 using ticketiApi.Models;
 
 namespace ticketiApi.Controllers
@@ -34,7 +36,8 @@ namespace ticketiApi.Controllers
         [HttpPost]
         public async Task<IActionResult> create(CreateEventDto createEvent)
         {
-            _context.events.add(createEvent);
+            var eventModel = createEvent.ToCreateEventDto;
+            _context.events.AddAsync(eventModel);
             await _context.SaveChangesAsync();
         }
     }
