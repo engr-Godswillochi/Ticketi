@@ -34,10 +34,9 @@ namespace ticketiApi.Controllers
             // return Ok(events);
         }
         [HttpPost]
-        public async Task<IActionResult> create(CreateEventDto createEvent)
+        public async Task<IActionResult> create(Event event)
         {
-            var eventModel = createEvent.ToCreateEventDto;
-            _context.events.AddAsync(eventModel);
+            _context.events.AddAsync(event);
             await _context.SaveChangesAsync();
         }
     }
