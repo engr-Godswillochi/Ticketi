@@ -34,10 +34,27 @@ namespace ticketiApi.Controllers
             // return Ok(events);
         }
         [HttpPost]
-        public async Task<IActionResult> create(Event event)
+        public async Task<IActionResult> create([FromBody] CreateEventDto createvent)
         {
-            _context.events.AddAsync(event);
+            var eventModel =    createvent.ToCreateEventDto();
+            if (eventModel == null)
+            {
+                return BadRequest("No information added");
+            }
+            await _context.events.AddAsync(eventModel);
             await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetEvent), new{id = eventModel.Id}, eventModel);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Event>> GetEvent(int id)
+        {
+            var eventModel = await _context.events.FindAsync(id);
+            if (eventModel == null)
+            {
+                return NotFound();
+            }
+            return eventModel;
         }
     }
 }
