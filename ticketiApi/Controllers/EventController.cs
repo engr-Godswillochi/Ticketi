@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ticketiApi.Data;
 using ticketiApi.Dto.EventDto;
+using ticketiApi.Dtos.EventDto;
 using ticketiApi.Interface;
 using ticketiApi.Mappers;
 using ticketiApi.Models;
@@ -55,6 +56,28 @@ namespace ticketiApi.Controllers
                 return NotFound();
             }
             return eventModel;
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventDto updateEvent)
+        {
+            if (id != updateEvent.Id)
+            {
+                return BadRequest();
+            }
+            var eventModel = await _context.events.FindAsync(id);
+            if (eventModel == null)
+            {
+                return NotFound();
+            }
+            eventModel.Name = updateEvent.Name;
+            eventModel.Date = updateEvent.Date;
+            eventModel.Location = updateEvent.Location;
+            eventModel.Description = updateEvent.Description;
+            eventModel.Image = updateEvent.Image;
+            eventModel.SoldOut = updateEvent.SoldOut;
+            eventModel.Organizer = updateEvent.Organizer;
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

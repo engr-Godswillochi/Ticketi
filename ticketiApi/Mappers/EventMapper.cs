@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ticketiApi.Dto.EventDto;
+using ticketiApi.Dtos.EventDto;
 using ticketiApi.Models;
 
 namespace ticketiApi.Mappers
@@ -24,5 +25,6 @@ namespace ticketiApi.Mappers
                 MaxTicketsPerUser = createEventDto.MaxTicketsPerUser,
             };
         }
+
     }
 }
