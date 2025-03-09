@@ -60,11 +60,7 @@ namespace ticketiApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventDto updateEvent)
         {
-            if (id != updateEvent.Id)
-            {
-                return BadRequest();
-            }
-            var eventModel = await _context.events.FindAsync(id);
+            var eventModel = await _context.events.FirstOrDefaultAsync(x => x.Id == id);
             if (eventModel == null)
             {
                 return NotFound();
