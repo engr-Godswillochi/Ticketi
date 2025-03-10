@@ -27,7 +27,7 @@ namespace ticketiApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
         {
-            return await _context.events.ToListAsync();
+            return await _eventrepo.GetAllEventsAsync();
             // if (events == null)
             // {
             //     return Ok("No events recorded");
@@ -37,7 +37,7 @@ namespace ticketiApi.Controllers
         [HttpPost]
         public async Task<IActionResult> create([FromBody] CreateEventDto createvent)
         {
-            var eventModel =    createvent.ToCreateEventDto();
+            var eventModel = createvent.ToCreateEventDto();
             if (eventModel == null)
             {
                 return BadRequest("No information added");
@@ -72,8 +72,9 @@ namespace ticketiApi.Controllers
             eventModel.Image = updateEvent.Image;
             eventModel.SoldOut = updateEvent.SoldOut;
             eventModel.Organizer = updateEvent.Organizer;
+
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok(eventModel);
         }
     }
 }

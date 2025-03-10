@@ -9,5 +9,6 @@ namespace ticketiApi.Interface
     public interface IEventRepository
     {
         Task<List<Event>> GetAllEventsAsync();
+        //remove
     }
 }
