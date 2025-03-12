@@ -76,5 +76,12 @@ namespace ticketiApi.Controllers
             await _context.SaveChangesAsync();
             return Ok(eventModel);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            _context.events.Remove(x => x.Id == id);
+            await _context.SaveChangesAsync();
+            return Ok();
+        } 
     }
 }
