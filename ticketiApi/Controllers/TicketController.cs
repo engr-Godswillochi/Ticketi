@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ticketiApi.Controllers
 {
+    [Route("api/ticket")]
+    [ApiController]
     public class TicketController : ControllerBase
     {
         
