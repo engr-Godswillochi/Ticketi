@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ticketiApi.Data;
+using ticketiApi.Models;
 
 namespace ticketiApi.Controllers
 {
@@ -10,6 +13,28 @@ namespace ticketiApi.Controllers
     [ApiController]
     public class TicketController : ControllerBase
     {
+        private readonly AppDbContext _context;
+        public TicketController(AppDbContext context)
+        {
+            _context = context;
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Ticket>>> GetTickets()
+        {
+            return await _context.tickets.ToListAsync();
+        }
+        [HttpPost]
+        public async Task<IActionResult> create([FromBody] Ticket ticket)
+        {
+            if (ticket == null)
+            {
+                return BadRequest("No information added");
+            }
+            await _context.tickets.AddAsync(ticket);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetTickets), new { id = ticket.Id }, ticket);
+        }
         
     }
 }
