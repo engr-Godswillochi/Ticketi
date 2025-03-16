@@ -19,7 +19,7 @@ namespace ticketiApi.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ticket>>> GetTickets()
+        public async Task<ActionResult <IEnumerable<Ticket>>> GetTickets()
         {
             return await _context.tickets.ToListAsync();
         }
@@ -34,6 +34,24 @@ namespace ticketiApi.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetTickets), new { id = ticket.Id }, ticket);
+        }
+        public async Task<IActionResult> update([FromBody] UpdateTicketDto updateTicket, int id)
+        {
+            var ticket = await _context.tickets.FirstOrDefaultAsync(x => x.Id == id);
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            ticket.Name = updateTicket.Name;
+            ticket.Date = updateTicket.Date;
+            ticket.Location = updateTicket.Location;
+            ticket.Description = updateTicket.Description;
+            ticket.Image = updateTicket.Image;
+            ticket.SoldOut = updateTicket.SoldOut;
+            ticket.Organizer = updateTicket.Organizer;
+
+            await _context.SaveChangesAsync();
+            return Ok(ticket);
         }
         
     }
