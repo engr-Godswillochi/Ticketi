@@ -35,6 +35,7 @@ namespace ticketiApi.Controllers
 
             return CreatedAtAction(nameof(GetTickets), new { id = ticket.Id }, ticket);
         }
+        [HttpPut("{id}")]
         public async Task<IActionResult> update([FromBody] UpdateTicketDto updateTicket, int id)
         {
             var ticket = await _context.tickets.FirstOrDefaultAsync(x => x.Id == id);
@@ -52,6 +53,19 @@ namespace ticketiApi.Controllers
 
             await _context.SaveChangesAsync();
             return Ok(ticket);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTicket(int id)
+        {
+            var ticket = await _context.tickets.FirstOrDefaultAsync(x => x.Id == id);
+            
+            if (ticket == null)
+            {
+                return null;
+            }
+            _context.tickets.Remove(ticket);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
         
     }
