@@ -44,12 +44,10 @@ namespace ticketiApi.Controllers
                 return NotFound();
             }
             ticket.Name = updateTicket.Name;
-            ticket.Date = updateTicket.Date;
-            ticket.Location = updateTicket.Location;
-            ticket.Description = updateTicket.Description;
-            ticket.Image = updateTicket.Image;
-            ticket.SoldOut = updateTicket.SoldOut;
-            ticket.Organizer = updateTicket.Organizer;
+            ticket.Price = updateTicket.Price;
+            ticket.Type = updateTicket.Type;
+            ticket.Available = updateTicket.Available;
+            ticket.Total = updateTicket.Total;
 
             await _context.SaveChangesAsync();
             return Ok(ticket);
