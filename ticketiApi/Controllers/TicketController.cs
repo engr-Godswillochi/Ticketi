@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ticketiApi.Data;
+using ticketiApi.Dtos.TicketDto;
 using ticketiApi.Models;
 
 namespace ticketiApi.Controllers
