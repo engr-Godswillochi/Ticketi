@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ticketiApi.Data;
 using ticketiApi.Dtos.TicketDto;
+using ticketiApi.Mappers;
 using ticketiApi.Models;
 
 namespace ticketiApi.Controllers
@@ -25,16 +26,17 @@ namespace ticketiApi.Controllers
             return await _context.tickets.ToListAsync();
         }
         [HttpPost]
-        public async Task<IActionResult> create([FromBody] Ticket ticket)
+        public async Task<IActionResult> create([FromBody] CreateTicketDto ticket)
         {
-            if (ticket == null)
+            var ticketModel = ticket.ToCreateTicketDto();
+            if (ticketModel == null)
             {
                 return BadRequest("No information added");
             }
-            await _context.tickets.AddAsync(ticket);
+            await _context.tickets.AddAsync(ticketModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTickets), new { id = ticket.Id }, ticket);
+            return Ok();
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> update([FromBody] UpdateTicketDto updateTicket, int id)
