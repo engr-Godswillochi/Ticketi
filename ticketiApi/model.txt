@@ -1,13 +1,3 @@
-public class TicketType
-{
-    public object Id { get; set; } // Can be int or string
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-    public string Type { get; set; } // "REGULAR", "VIP", "VVIP" or other
-    public int Available { get; set; }
-    public int Total { get; set; }
-}
-
 public class UserTicketData
 {
     public string UserName { get; set; }
@@ -29,6 +19,8 @@ public class User
     public string Role { get; set; } // "admin", "user", "organizer"
 }
 
+
+//////done
 public class Event
 {
     public string Id { get; set; }
@@ -43,4 +35,15 @@ public class Event
     public string CreatedAt { get; set; }
     public int MaxTicketsPerUser { get; set; }
     public string Category { get; set; }
+}
+
+//////done
+public class TicketType
+{
+    public object Id { get; set; } // Can be int or string
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string Type { get; set; } // "REGULAR", "VIP", "VVIP" or other
+    public int Available { get; set; }
+    public int Total { get; set; }
 }
